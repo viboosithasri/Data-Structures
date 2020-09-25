@@ -1,0 +1,61 @@
+#include<stdio.h>
+#define MAX 20
+void push1(char) ;
+void push2(char) ;
+void identical() ;
+int  i, j, flag=1,top1=-1,top2=-1,x, y;
+char stack1[MAX], stack2[MAX],str1[20],str2[20],a, b;
+main()
+{
+    printf("\nstring1:") ;
+    gets(str1) ;
+    printf("\nstring2:");
+    gets(str2);
+    for(j=0; j<strlen(str1) ; j++)
+        push1(str1[j]) ;
+    for(j=0; j<strlen(str2) ; j++)
+        push2(str2[j]) ;
+    identical();
+}
+void push1(char a)
+{
+    if(top1==(MAX-1))
+        printf("\noverflow");
+    else
+    {
+        top1+=1;
+        stack1[top1]=a;
+    }
+}
+void push2(char b)
+{
+    if(top1==(MAX-1))
+        printf("\noverflow");
+    else
+    {
+        top2+=1;
+        stack2[top2]=b;
+    }
+}
+void identical()
+{
+    if(top1==top2)
+    {
+        for(i=0; i<top1; i++)
+        {
+            if(stack1[i]!=stack2[i])
+              {  flag=0;
+                break;}
+        }
+        if(flag==0)
+        printf("different");
+        else
+        printf("same");
+    }
+    else
+    {
+        printf("different");
+        exit(1);
+    }
+
+}

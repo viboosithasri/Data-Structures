@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define MAX 20
+int top=-1,i=0;
+char stack[MAX],str[20],a,x;
+char pop();
+void push(char);
+int main()
+{
+    printf("Enter the string : " );
+    gets(str);
+    for(i=0;i<strlen(str);i++)
+       {
+        if(str[i]=='('||str[i]=='['||str[i]=='{')
+            push(str[i]);
+        else
+            { x=pop();
+            if(x=='('&&str[i]==')' || x=='{'&&str[i]=='}' || x=='['&&str[i]==']')
+            { printf("%c",x);
+            printf("%c",str[i]);
+            continue;
+            }
+            else
+            { printf("unbalanced");
+            exit(1);
+            }
+            }
+       }
+       if(top==-1)
+       { printf("balanced");
+       }
+       else
+       { printf("Unbalanced");
+       }
+
+    return 0;
+
+}
+void push(char a)
+{
+    if(top == (MAX-1))
+        { printf("\nStack Overflow\n");
+          return 0;
+        }
+    top++;
+    stack[top]=a;
+}
+char pop()
+{
+
+    if(top == -1)
+    { printf("Unbalanced");
+     exit(1);
+     }
+     return stack[top--];
+
+}

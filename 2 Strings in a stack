@@ -1,0 +1,60 @@
+#include<stdio.h>
+#define MAX 10
+void push1(char);
+void push2(char);
+int  i=0, j=0,k,flag=1,top1=-1,ch,top2=MAX-1;
+char stack[MAX],str1[20],str2[20],a;
+main()
+{
+    printf("\nstring1:") ;
+    gets(str1) ;
+    printf("\nstring2:");
+    gets(str2);
+    for (k=0;k<MAX;k++)
+    {
+        stack[k]==0;
+    }
+    do
+    {
+        printf("\n 1.STACK1 2.STACK2 \n 3. Display \n 4. Exit\n");
+        printf("\n Enter Your Choice: ");
+        scanf("%d", &ch);
+        switch(ch)
+        {
+            case 1: Push1(str1[i++]);
+                    break;
+            case 2: Push2(str2[j++]);
+                    break;
+            case 3: for (k=0;k<MAX;k++)
+                        {
+                        printf("%c ",stack[k]);
+                        }
+                    break;
+            case 4: exit(0);
+            default: printf("\n Invalid Choice..\n"); }
+        } while(ch!=4);
+
+}
+
+void Push1(char a)
+{  if(top1+flag==MAX)
+    { printf("Stack overflow");
+    exit(1);
+    }
+   else
+    { top1++;
+      stack[top1]=a;
+    }
+}
+void Push2(char a)
+{  if(top1+flag==MAX)
+    { printf("Stack overflow");
+    exit(1);
+    }
+   else
+    {
+      stack[top2--]=a;
+      flag++;
+    }
+}
+

@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<ctype.h>
+#define N 50
+int top=-1,k=0;
+char str[50],stack[N],newstr[50];
+int opr(char a)
+{
+ char arr[5]={'^','/','*','+','-'};
+ for (int j=0;j<5;j++)
+ { if(a==arr[j])
+        return j;
+ }
+ return 0;
+}
+
+void main()
+{ printf("Enter the string(enter ')' at end):");
+  gets(str);
+  stack[0]='(';
+  top++;
+  for(int i=0;i<strlen(str);i++)
+    {
+        if(isalnum(str[i])==8)
+        {
+            newstr[k++]=str[i];
+        }
+        else if(str[i]=='(')
+        {
+            stack[top++ +1]='(';
+        }
+        else if(str[i]==')')
+        {
+            while(stack[top]!='(')
+            {
+                newstr[k++]=stack[top];
+                top--;
+            }
+            top--;
+        }
+        else
+        {   if(stack[top]=='(')
+                stack[top++ +1]=str[i];
+            else
+            { if(opr(stack[top])<=opr(str[i])||(stack[top]=='-'&&str[i]=='+')||(stack[top]=='/'&&str[i]=='*'))
+                {   newstr[k++]=stack[top];
+                    top--;
+                }
+              stack[top++ +1]=str[i];
+            }
+
+        }
+    }
+printf("\nPOSTFIX EXPRESSION: %s\n",newstr);
+}

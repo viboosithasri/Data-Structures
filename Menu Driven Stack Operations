@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define N 10
+void Push();
+void Pop();
+void display();
+int stack[N], top=-1, element;
+void main()
+{
+ int ch;
+ do
+ {
+ printf("\n 1. Insert\n 2. Delete\n 3. Display\n 4. Exit\n");  printf("\n Enter Your Choice: ");
+ scanf("%d", &ch);
+ switch(ch)
+ {
+ case 1:
+ Push();
+ break;
+ case 2:
+ Pop();
+ break;
+ case 3:
+ display();
+ break;
+ case 4:
+ exit(0);
+ default:
+ printf("\n Invalid Choice..\n");
+ }
+ }
+ while(ch!=4);
+}
+void Push()
+{
+ if(top == N-1)
+ printf("\n\n Stack is Full.");
+ else
+ {
+ printf("\n\n Enter Element: ");
+ scanf("%d", &element);
+ top++;
+ stack[top] = element;
+ }
+}
+void Pop()
+{
+ if(top == -1)
+ printf("\n\n Stack is Empty.");
+ else
+ {
+ element = stack[top];
+ top--;
+ }
+}
+void display()
+{
+ int i;
+ if(top == -1)
+ printf("\n\n Stack is Empty.");  else
+ {
+ for(i=top; i>=0; i--)
+ printf("\n%d", stack[i]);  }
+}
